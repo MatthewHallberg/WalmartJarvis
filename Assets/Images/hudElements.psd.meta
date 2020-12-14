@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ec4d36c7e742ed4eb3d1c4614f190b7
+guid: c62ca28cd878740f7b2f231de3eff082
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -32,6 +32,69 @@ TextureImporter:
   - first:
       213: 8351117812991095267
     second: hudElements_9
+  - first:
+      213: -2236041785629179964
+    second: hudElements_10
+  - first:
+      213: 5120345038938874173
+    second: hudElements_11
+  - first:
+      213: -6172249795076727576
+    second: hudElements_12
+  - first:
+      213: 6861472610829807288
+    second: hudElements_13
+  - first:
+      213: -4062399724361283315
+    second: hudElements_14
+  - first:
+      213: 368769395577628252
+    second: hudElements_15
+  - first:
+      213: 7199357129509014957
+    second: hudElements_16
+  - first:
+      213: -4115711140901426171
+    second: hudElements_17
+  - first:
+      213: -7880152240897190907
+    second: hudElements_18
+  - first:
+      213: 6788160988325035029
+    second: hudElements_19
+  - first:
+      213: -1913221972579052790
+    second: hudElements_20
+  - first:
+      213: 6389994747553908878
+    second: hudElements_21
+  - first:
+      213: -4666774299584769221
+    second: hudElements_22
+  - first:
+      213: 4547687971427329357
+    second: hudElements_23
+  - first:
+      213: 658618104500045697
+    second: hudElements_24
+  - first:
+      213: 2252408289886687972
+    second: hudElements_25
+  - first:
+      213: -7109168771422267315
+    second: hudElements_26
+  - first:
+      213: 731723799189487327
+    second: hudElements_27
+  - first:
+      213: 8663732794511487251
+    second: hudElements_28
+  - first:
+      213: 4869703835221154183
+    second: hudElements_29
+  - first:
+      213: 4000370870322348692
+    second: hudElements_30
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -114,6 +177,18 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 512
     resizeAlgorithm: 0
@@ -132,10 +207,10 @@ TextureImporter:
       name: hudElements_0
       rect:
         serializedVersion: 2
-        x: 149
-        y: 320
-        width: 122
-        height: 113
+        x: 151
+        y: 321
+        width: 118
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +228,10 @@ TextureImporter:
       name: hudElements_1
       rect:
         serializedVersion: 2
-        x: 287
-        y: 314
-        width: 139
-        height: 132
+        x: 300
+        y: 322
+        width: 113
+        height: 109
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,10 +249,10 @@ TextureImporter:
       name: hudElements_2
       rect:
         serializedVersion: 2
-        x: 451
-        y: 312
-        width: 123
-        height: 131
+        x: 454
+        y: 320
+        width: 116
+        height: 115
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,10 +270,10 @@ TextureImporter:
       name: hudElements_3
       rect:
         serializedVersion: 2
-        x: 70
-        y: 179
-        width: 121
-        height: 132
+        x: 71
+        y: 188
+        width: 119
+        height: 117
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +291,10 @@ TextureImporter:
       name: hudElements_4
       rect:
         serializedVersion: 2
-        x: 211
-        y: 176
-        width: 137
-        height: 135
+        x: 215
+        y: 183
+        width: 128
+        height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,10 +312,10 @@ TextureImporter:
       name: hudElements_5
       rect:
         serializedVersion: 2
-        x: 354
-        y: 177
-        width: 142
-        height: 133
+        x: 366
+        y: 185
+        width: 124
+        height: 121
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,10 +333,10 @@ TextureImporter:
       name: hudElements_6
       rect:
         serializedVersion: 2
-        x: 508
-        y: 176
-        width: 129
-        height: 136
+        x: 515
+        y: 186
+        width: 114
+        height: 121
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,10 +354,10 @@ TextureImporter:
       name: hudElements_7
       rect:
         serializedVersion: 2
-        x: 133
-        y: 51
-        width: 133
-        height: 127
+        x: 143
+        y: 55
+        width: 112
+        height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -301,9 +376,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 287
-        y: 62
-        width: 115
-        height: 108
+        y: 60
+        width: 114
+        height: 116
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,10 +396,10 @@ TextureImporter:
       name: hudElements_9
       rect:
         serializedVersion: 2
-        x: 438
-        y: 57
-        width: 126
-        height: 116
+        x: 445
+        y: 59
+        width: 113
+        height: 114
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,7 +416,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0103a466e9085af45a927381de9cece5
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -350,7 +425,7 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
+  pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 
