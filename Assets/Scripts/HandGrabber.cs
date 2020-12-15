@@ -1,7 +1,5 @@
 ﻿public class HandGrabber : OVRGrabber {
 
-    const float PINCH = .7f;
-
     OVRHand hand;
 
     protected override void Start() {
@@ -16,9 +14,9 @@
 
     void DetectPinch() {
         float currPinch = hand.GetFingerPinchStrength(OVRHand.HandFinger.Index);
-        if (!m_grabbedObj && currPinch > PINCH) {
+        if (!m_grabbedObj && currPinch > Settings.PINCH_THRESHOLD) {
             GrabBegin();
-        } else if (m_grabbedObj && currPinch < PINCH) {
+        } else if (m_grabbedObj && currPinch < Settings.PINCH_THRESHOLD) {
             GrabEnd();
         }
     }

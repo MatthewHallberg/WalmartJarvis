@@ -207,12 +207,12 @@ TextureImporter:
       name: hudElements_0
       rect:
         serializedVersion: 2
-        x: 151
-        y: 321
-        width: 118
-        height: 110
+        x: 157
+        y: 324
+        width: 103
+        height: 105
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -228,12 +228,12 @@ TextureImporter:
       name: hudElements_1
       rect:
         serializedVersion: 2
-        x: 300
+        x: 304
         y: 322
-        width: 113
-        height: 109
+        width: 107
+        height: 107
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: hudElements_2
       rect:
         serializedVersion: 2
-        x: 454
-        y: 320
-        width: 116
-        height: 115
+        x: 456
+        y: 322
+        width: 108
+        height: 108
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -270,9 +270,9 @@ TextureImporter:
       name: hudElements_3
       rect:
         serializedVersion: 2
-        x: 71
-        y: 188
-        width: 119
+        x: 73
+        y: 187
+        width: 117
         height: 117
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -291,12 +291,12 @@ TextureImporter:
       name: hudElements_4
       rect:
         serializedVersion: 2
-        x: 215
-        y: 183
-        width: 128
-        height: 124
+        x: 222
+        y: 190
+        width: 112
+        height: 110
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -312,10 +312,10 @@ TextureImporter:
       name: hudElements_5
       rect:
         serializedVersion: 2
-        x: 366
-        y: 185
-        width: 124
-        height: 121
+        x: 360
+        y: 180
+        width: 130
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -333,12 +333,12 @@ TextureImporter:
       name: hudElements_6
       rect:
         serializedVersion: 2
-        x: 515
-        y: 186
-        width: 114
-        height: 121
+        x: 519
+        y: 192
+        width: 105
+        height: 106
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -354,12 +354,12 @@ TextureImporter:
       name: hudElements_7
       rect:
         serializedVersion: 2
-        x: 143
-        y: 55
-        width: 112
-        height: 124
+        x: 147
+        y: 60
+        width: 103
+        height: 114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -375,12 +375,12 @@ TextureImporter:
       name: hudElements_8
       rect:
         serializedVersion: 2
-        x: 287
-        y: 60
-        width: 114
-        height: 116
+        x: 291
+        y: 64
+        width: 105
+        height: 105
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -396,12 +396,12 @@ TextureImporter:
       name: hudElements_9
       rect:
         serializedVersion: 2
-        x: 445
-        y: 59
-        width: 113
-        height: 114
+        x: 449
+        y: 65
+        width: 104
+        height: 104
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
