@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StereoRenderingModeDesktop: 0
   m_StereoRenderingModeAndroid: 0
-  SharedDepthBuffer: 1
+  SharedDepthBuffer: 0
   DashSupport: 0
   V2Signing: 1
   LowOverheadMode: 0

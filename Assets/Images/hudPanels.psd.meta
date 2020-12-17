@@ -123,12 +123,12 @@ TextureImporter:
       name: hudPanels_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 355
-        width: 276
-        height: 153
+        x: 79
+        y: 275
+        width: 468
+        height: 248
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -144,12 +144,12 @@ TextureImporter:
       name: hudPanels_1
       rect:
         serializedVersion: 2
-        x: 326
-        y: 358
-        width: 271
-        height: 149
+        x: 83
+        y: 16
+        width: 467
+        height: 247
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -157,27 +157,6 @@ TextureImporter:
       bones: []
       spriteID: b4afad9c6cb0ee920800000000000000
       internalID: 3021365348430182987
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hudPanels_2
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 85
-        width: 278
-        height: 146
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5edd01937a62e3280800000000000000
-      internalID: -9061762900564058651
       vertices: []
       indices: 
       edges: []

@@ -7,6 +7,9 @@ public class Speech : MonoBehaviour {
 
     const string GREETING = "yes sir";
 
+    public delegate void OnSpeekStateChanged(bool isTalking);
+    public static OnSpeekStateChanged speakStateChanged;
+
     SpVoice voice = new SpVoice();
     KeywordRecognizer keywordRecognizer;
     DictationRecognizer m_DictationRecognizer;
@@ -37,11 +40,13 @@ public class Speech : MonoBehaviour {
     void SpeakWords(string words) {
         voice.Speak(words, SpeechVoiceSpeakFlags.SVSFlagsAsync);
         isSpeaking = true;
+        speakStateChanged?.Invoke(true);
     }
 
     // this gets called late so we cant start listening here
     void OnDoneSpeaking() {
         isSpeaking = false;
+        speakStateChanged?.Invoke(false);
     }
 
     void ListenForKeyword() {

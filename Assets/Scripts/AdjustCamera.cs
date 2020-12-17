@@ -2,16 +2,11 @@
 
 public class AdjustCamera : MonoBehaviour {
 
-    public Transform camFeed;
     public Transform leftCam;
     public Transform rightCam;
 
-    [Header("CAM-Distance")]
-    [Range(.5f, .7f)]
-    public float CamDistance;
-
     [Header("X-SHIFT")]
-    [Range(-.2f, .2f)]
+    [Range(1, 6f)]
     public float X;
 
     [Header("Y-SHIFT")]
@@ -19,7 +14,7 @@ public class AdjustCamera : MonoBehaviour {
     public float Y;
 
     [Header("Z-SHIFT")]
-    [Range(-.5f, 1.5f)]
+    [Range(0f, -5f)]
     public float Z;
 
     void Start() {
@@ -35,25 +30,22 @@ public class AdjustCamera : MonoBehaviour {
     }
 
     void SetValues() {
-        camFeed.localPosition = new Vector3(X, Y, Z);
-        leftCam.localPosition = new Vector3(-CamDistance, 0, 0);
-        rightCam.localPosition = new Vector3(CamDistance, 0, 0);
+        //leftCam.localPosition = new Vector3(-X, Y, Z);
+        //rightCam.localPosition = new Vector3(X, Y, Z);
     }
 
     void LoadValues() {
-        if (PlayerPrefs.HasKey("X")) {
-            X = PlayerPrefs.GetFloat("X");
-            Y = PlayerPrefs.GetFloat("Y");
-            Z = PlayerPrefs.GetFloat("Z");
-            CamDistance = PlayerPrefs.GetFloat("CamDistance");
+        if (PlayerPrefs.HasKey("x")) {
+            X = PlayerPrefs.GetFloat("x");
+            Y = PlayerPrefs.GetFloat("y");
+            Z = PlayerPrefs.GetFloat("z");
         }
         SetValues();
     }
 
     void SaveValues() {
-        PlayerPrefs.SetFloat("X", X);
-        PlayerPrefs.SetFloat("Y", Y);
-        PlayerPrefs.SetFloat("Z", Z);
-        PlayerPrefs.SetFloat("CamDistance", CamDistance);
+        //PlayerPrefs.SetFloat("x", X);
+        PlayerPrefs.SetFloat("y", Y);
+        //PlayerPrefs.SetFloat("z", Z);
     }
 }
