@@ -87,7 +87,7 @@ Material:
     - _GlossMapScale: 0.508
     - _Glossiness: 0.389
     - _GlossyReflections: 1
-    - _HandAlpha: 0.271
+    - _HandAlpha: 0.675
     - _Metallic: 0
     - _MinVisibleAlpha: 0
     - _Mode: 0
