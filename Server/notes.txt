@@ -1,0 +1,3 @@
+1.) Install python 3.7 or lower
+2.) pip install aiml
+3.) Install Node.js

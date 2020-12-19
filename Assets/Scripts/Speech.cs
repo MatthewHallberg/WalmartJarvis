@@ -5,23 +5,28 @@ using UnityEngine.Windows.Speech;
 
 public class Speech : MonoBehaviour {
 
-    const string GREETING = "yes sir";
-
     public delegate void OnSpeekStateChanged(bool isTalking);
     public static OnSpeekStateChanged speakStateChanged;
+
+    public delegate void OnKeywordRecognized();
+    public static OnKeywordRecognized keywordRecognized;
+
+    public delegate void OnSpeechRecognized(string speech);
+    public static OnSpeechRecognized speechRecognized;
 
     SpVoice voice = new SpVoice();
     KeywordRecognizer keywordRecognizer;
     DictationRecognizer m_DictationRecognizer;
     bool isSpeaking;
 
-    void Start() {
+    void Awake() {
         //setup keyword reecognizer
-        keywordRecognizer = new KeywordRecognizer(new string[] { "jarvis" }, ConfidenceLevel.Low);
+        keywordRecognizer = new KeywordRecognizer(new string[] { Config.KEYWORD }, ConfidenceLevel.Low);
         keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
 
         //setup dictation recognizer
         m_DictationRecognizer = new DictationRecognizer();
+        m_DictationRecognizer.AutoSilenceTimeoutSeconds = 2;
         m_DictationRecognizer.DictationResult += (text, confidence) => {
             StartCoroutine(OnSpeechResult(text));
         };
@@ -32,15 +37,27 @@ public class Speech : MonoBehaviour {
         m_DictationRecognizer.DictationError += (error, hresult) => {
             StartCoroutine(OnSpeechResult("error"));
         };
-
-        //start listening for first keyword
-        ListenForKeyword();
     }
 
-    void SpeakWords(string words) {
+    public void StartSpeechRoutine() {
+        keywordRecognizer.Start();
+        print("Speech Started...");
+    }
+
+    public void SpeakWords(string words) {
         voice.Speak(words, SpeechVoiceSpeakFlags.SVSFlagsAsync);
         isSpeaking = true;
         speakStateChanged?.Invoke(true);
+    }
+
+    public void ListenForSpeech() {
+        m_DictationRecognizer.Start();
+        print("Listening...");
+    }
+
+    void ListenForKeyword() {
+        PhraseRecognitionSystem.Restart();
+        print("Waiting...");
     }
 
     // this gets called late so we cant start listening here
@@ -49,42 +66,19 @@ public class Speech : MonoBehaviour {
         speakStateChanged?.Invoke(false);
     }
 
-    void ListenForKeyword() {
-        PhraseRecognitionSystem.Restart();
-        keywordRecognizer.Start();
-        print("Waiting...");
-    }
-
     void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args) {
-        SpeakWords(GREETING);
         PhraseRecognitionSystem.Shutdown();
         ListenForSpeech();
-    }
-
-     void ListenForSpeech() {
-        m_DictationRecognizer.Start();
-        print("Listening...");
+        keywordRecognized?.Invoke();
     }
 
     IEnumerator OnSpeechResult(string speech) {
-
-        if (speech.Length > 1 && speech != "error") {
-            speech = RemoveGreeting(speech);
-            print(speech);
-        } else {
-            print("try again");
-        }
-
+        speechRecognized?.Invoke(speech);
         m_DictationRecognizer.Stop();
-
-        yield return new WaitForSeconds(1f);
+        while (m_DictationRecognizer.Status == SpeechSystemStatus.Running) {
+            yield return new WaitForEndOfFrame();
+        }
         ListenForKeyword();
-
-    }
-
-    string RemoveGreeting(string text) {
-        int index = text.IndexOf(GREETING);
-        return (index < 0) ? text : text.Remove(index, GREETING.Length);
     }
 
     void Update() {

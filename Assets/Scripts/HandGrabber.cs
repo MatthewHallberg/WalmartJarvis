@@ -14,9 +14,9 @@
 
     void DetectPinch() {
         float currPinch = hand.GetFingerPinchStrength(OVRHand.HandFinger.Index);
-        if (!m_grabbedObj && currPinch > Settings.PINCH_THRESHOLD) {
+        if (!m_grabbedObj && currPinch > Config.PINCH_THRESHOLD) {
             GrabBegin();
-        } else if (m_grabbedObj && currPinch < Settings.PINCH_THRESHOLD) {
+        } else if (m_grabbedObj && currPinch < Config.PINCH_THRESHOLD) {
             GrabEnd();
         }
     }

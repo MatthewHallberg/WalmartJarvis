@@ -53,7 +53,7 @@ public class HandGrabbable : OVRGrabbable {
             float firstPinch = hands[0].GetFingerPinchStrength(OVRHand.HandFinger.Index);
             float secondPinch = hands[1].GetFingerPinchStrength(OVRHand.HandFinger.Index);
 
-            if (firstPinch > Settings.PINCH_THRESHOLD && secondPinch > Settings.PINCH_THRESHOLD) {
+            if (firstPinch > Config.PINCH_THRESHOLD && secondPinch > Config.PINCH_THRESHOLD) {
                 float currScaleDelta = Vector3.Distance(hands[0].transform.position, hands[1].transform.position);
                 if (lastScaleDelta != -1) {
                     float currScaleAmount = currScaleDelta - lastScaleDelta;
