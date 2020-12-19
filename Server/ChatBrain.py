@@ -3,7 +3,8 @@ import os
 import aiml
 import sys
 import socket
-import atexit  
+import atexit
+import platform  
 
 BRAIN_FILE="brain.dump"
 
@@ -13,6 +14,7 @@ def LoadBrain():
 	if os.path.exists(BRAIN_FILE):
 	    print("Loading from brain file: " + BRAIN_FILE)
 	    k.loadBrain(BRAIN_FILE)
+	    print("Brain loaded successfully!")
 	else:
 	    print("Parsing aiml files")
 	    k.bootstrap(learnFiles="std-startup.aiml", commands="load aiml b")
@@ -23,6 +25,16 @@ def MakeRequest(message):
 	print(message);
 	return k.respond(message)
 
+def PrintSysInfo():
+	print('uname:', platform.uname())
+	print()
+	print('system   :', platform.system())
+	print('node     :', platform.node())
+	print('release  :', platform.release())
+	print('version  :', platform.version())
+	print('machine  :', platform.machine())
+	print('processor:', platform.processor())
+
 # next create a socket object and listen
 HOST = '127.0.0.1'	# Standard loopback interface address (localhost)
 PORT = 12452	# Port to listen on (non-privileged ports are > 1023)
@@ -32,6 +44,9 @@ s.bind((HOST, PORT))
 s.listen(1)
 print('listening...')
 conn, addr = s.accept()
+print('connection accepted...')
+
+PrintSysInfo()
 
 #load AIML files after connection
 LoadBrain()

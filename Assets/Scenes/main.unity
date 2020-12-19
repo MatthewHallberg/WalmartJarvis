@@ -705,9 +705,9 @@ GameObject:
   - component: {fileID: 756485976}
   - component: {fileID: 756485978}
   - component: {fileID: 756485979}
-  - component: {fileID: 756485977}
   - component: {fileID: 756485980}
   - component: {fileID: 756485981}
+  - component: {fileID: 756485977}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -742,6 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speech: {fileID: 756485978}
+  terminal: {fileID: 756485980}
 --- !u!114 &756485978
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,14 +3,19 @@
 public class Jarvis : MonoBehaviour {
 
     public Speech speech;
+    public Terminal terminal;
+    bool intialized;
+
     void OnEnable() {
         Speech.keywordRecognized += OnKeywordRecognized;
         Speech.speechRecognized += OnSpeechRecognized;
+        Terminal.initialized += OnInitializedStatusRecieved;
     }
 
     void OnDisable() {
         Speech.keywordRecognized -= OnKeywordRecognized;
         Speech.speechRecognized -= OnSpeechRecognized;
+        Terminal.initialized -= OnInitializedStatusRecieved;
     }
 
     void Start() {
@@ -22,8 +27,19 @@ public class Jarvis : MonoBehaviour {
         speech.SpeakWords(botData.speech);
     }
 
+    void OnInitializedStatusRecieved(bool status) {
+        intialized = status;
+        string feedback = status ? Config.INITIALIZED : Config.FAILED;
+        speech.SpeakWords(feedback);
+    }
+
     void OnKeywordRecognized() {
-        speech.SpeakWords(Config.GREETING);
+        if (intialized) {
+            speech.SpeakWords(Config.GREETING);
+        } else {
+            speech.SpeakWords(Config.LOADING);
+            terminal.StartTerminal();
+        }
     }
 
     void OnSpeechRecognized(string speech) {
