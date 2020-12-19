@@ -39,6 +39,22 @@ public class Speech : MonoBehaviour {
         };
     }
 
+    IEnumerator OnSpeechResult(string speech) {
+        //if valid return result
+        if (speech != "error" && speech.Length > 0) {
+            speechRecognized?.Invoke(speech);
+            yield return new WaitForEndOfFrame();
+            m_DictationRecognizer.Stop();
+        } else {
+            print(speech);
+        }
+        //wait for dictation to stop and listen for keyword again
+        while (m_DictationRecognizer.Status == SpeechSystemStatus.Running) {
+            yield return new WaitForEndOfFrame();
+        }
+        ListenForKeyword();
+    }
+
     public void StartSpeechRoutine() {
         keywordRecognizer.Start();
         print("Speech Started...");
@@ -70,15 +86,6 @@ public class Speech : MonoBehaviour {
         PhraseRecognitionSystem.Shutdown();
         ListenForSpeech();
         keywordRecognized?.Invoke();
-    }
-
-    IEnumerator OnSpeechResult(string speech) {
-        speechRecognized?.Invoke(speech);
-        m_DictationRecognizer.Stop();
-        while (m_DictationRecognizer.Status == SpeechSystemStatus.Running) {
-            yield return new WaitForEndOfFrame();
-        }
-        ListenForKeyword();
     }
 
     void Update() {

@@ -27,14 +27,6 @@ public class Jarvis : MonoBehaviour {
     }
 
     void OnSpeechRecognized(string speech) {
-        if (speech.Length > 1 && speech != "error") {
-            HandleSpeech(RemoveGreeting(speech));
-        } else {
-            print("try again");
-        }
-    }
-
-    void HandleSpeech(string speech) {
         print(speech);
         API.Instance.MakeChatBotRequest(speech, OnChatBotRequestReceived);
     }
