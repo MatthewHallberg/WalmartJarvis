@@ -10,18 +10,6 @@ socket.connect(12452);
 
 var port = 3000;
 
-const firstEntityValue = (entities, entity) => {
-  const val = entities && entities[entity] &&
-    Array.isArray(entities[entity]) &&
-    entities[entity].length > 0 &&
-    entities[entity][0].value
-  ;
-  if (!val) {
-    return null;
-  }
-  return typeof val === 'object' ? val.value : val;
-};
-
 //create a server object:
 http.createServer(function (req, response) {
   //next get message from post request
@@ -30,29 +18,39 @@ http.createServer(function (req, response) {
     message += data;
   });
 
-  var botData = {
-    youtube: '',
-    location: '',
-    speech: ''
-  }; 
-
   req.on('end', async function () {
 
       message = unescape(message);
 
 	   if (message !== null && message.length > 0) {
 
-        //Send message to chatbot brain
-        socket.write(message);
+          //create object to return
+          var botData = {};
 
-        //wait for response
-        await socket.on('data', function(d){
-          botData.speech = d.toString();
-          console.log("Recieved: " + botData.speech);
+          //first run throught wit.ai
+          const client = new Wit({accessToken: 'L7BLOIF6QU3XCS3AVRXLDNTIK4Q5KCME'});
+          await client.message(message, {})
+          .then((data) => {
+
+            botData.entities = data.entities;
+            botData.speech = '';
+
+          }).catch(console.error);
+
+          var gotWitResult = Object.keys(botData.entities).length > 0;
+
+          if (!gotWitResult){
+            //Send message to chatbot brain
+            socket.write(message);
+            await socket.on('data', function(d){
+              botData.speech = d.toString();
+              console.log("Recieved: " + botData.speech);
+              socket.removeAllListeners(['data']);
+            });
+          }
+
           response.end(JSON.stringify(botData));
-          socket.removeAllListeners(['data']);
-        });
-          
+
 	   } else {
 	   		response.end("invalid question");
 	   }
