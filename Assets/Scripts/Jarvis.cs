@@ -25,8 +25,9 @@ public class Jarvis : MonoBehaviour {
     void OnChatBotRequestReceived(BotData botData) {
 
         switch (botData.intent) {
-            case "YoutTube":
+            case "YouTube":
                 speech.SpeakWords("loading video...");
+                YouTubePlayer.Instance.PlayVideo(botData.value);
                 break;
             case "website":
                 speech.SpeakWords("loading website...");

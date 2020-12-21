@@ -1,4 +1,5 @@
 var http = require('http');
+const ytdl = require('ytdl-core');
 var {google} = require('googleapis'),
     youtubeV3 = google.youtube( { version: 'v3', auth: 'AIzaSyD8mXzSopdZzBdTtBQplNlaHL4WBDiH-9A' } );
 
@@ -13,7 +14,9 @@ http.createServer(function (req, response) {
 
   req.on('end', async function () {
 
-    var videoURL = await new Promise((resolve, reject) => {
+    console.log("Searching for: " + message);
+
+    var videoId = await new Promise((resolve, reject) => {
        youtubeV3.search.list({
               part: 'snippet',
               type: 'video',
@@ -24,15 +27,16 @@ http.createServer(function (req, response) {
                  console.log("ERROR");
                  reject(err);
               } else {
-                var videoId = response.data.items[0].id.videoId;
-                var videoURL = 'https://www.youtube.com/watch?v=' + videoId;
-                console.log(videoURL);
-                resolve(videoURL);
+                resolve(response.data.items[0].id.videoId);
               }
           });
      });
 
-    response.end(videoURL);
+    var info = await ytdl.getInfo(videoId);
+    var hardlink = info.formats[0].url;
+    var videoURL = 'https://www.youtube.com/watch?v=' + videoId;
+    console.log(videoURL);
+    response.end(hardlink);
 
   });
 }).listen(port);

@@ -19,8 +19,7 @@ public class Terminal : MonoBehaviour {
     public delegate void OnInitialized(bool succcess);
     public static OnInitialized initialized;
 
-    Process node;
-    Process python;
+    readonly string[] processNames = new string[] {"node", "node", "python" };
 
     [DllImport("user32.dll")]
     static extern IntPtr GetActiveWindow();
@@ -52,15 +51,8 @@ public class Terminal : MonoBehaviour {
         };
 
         Process process = Process.Start(info);
-
-        Thread.Sleep(1000);
-
-        //HACK: keeping track of the parent process and closing/disposing/killing does not seem to do anything at all even when I keep it running (also why there is a .bat file to just run both)
-        node = Process.GetProcesses().FirstOrDefault(x => x.ProcessName == "node");
-        python = Process.GetProcesses().FirstOrDefault(x => x.ProcessName == "python");
     }
 
-    int pingCount = 0;
     void OnTestQuestionAnswered(BotData data) {
         bool success = data.speech == Config.TEST_ANSWER;
         //this only works when called in the same thread as GetActiveWindow (I think?)
@@ -75,7 +67,14 @@ public class Terminal : MonoBehaviour {
     }
 
     void OnApplicationQuit() {
-        node?.Kill();
-        python?.Kill();
+        //HACK: keeping track of the parent process and closing/disposing/killing does not seem to do anything at all even when I keep it running (also why there is a .bat file to just run everything)
+        foreach (string pName in processNames) {
+            IEnumerable processes = Process.GetProcesses().Where(x => x.ProcessName == pName);
+            foreach (Process process in processes) {
+                if (!process.HasExited) {
+                    process?.Kill();
+                }
+            }
+        }
     }
 }
