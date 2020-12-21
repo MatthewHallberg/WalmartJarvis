@@ -1,6 +1,5 @@
 var http = require('http');
 const {Wit, log} = require('node-wit');
-var youtube = require('./youTube.js');
 const { StringDecoder } = require('string_decoder');
 const decoder = new StringDecoder('utf8');
 
@@ -25,31 +24,39 @@ http.createServer(function (req, response) {
 	   if (message !== null && message.length > 0) {
 
           //create object to return
-          var botData = {};
+          var botData = {
+            intent: '',
+            value: '',
+            speech: ''
+          };
 
           //first run throught wit.ai
           const client = new Wit({accessToken: 'L7BLOIF6QU3XCS3AVRXLDNTIK4Q5KCME'});
           await client.message(message, {})
           .then((data) => {
 
-            botData.entities = data.entities;
-            botData.speech = '';
+            var gotWitResult = Object.keys(data.entities).length > 0;
+
+            if (gotWitResult){
+              var entityKey = Object.keys(data.entities)[0];
+              botData.intent = data.entities[entityKey][0].name;
+              botData.value = data.entities[entityKey][0].value;
+              response.end(JSON.stringify(botData));
+            }
 
           }).catch(console.error);
 
-          var gotWitResult = Object.keys(botData.entities).length > 0;
 
-          if (!gotWitResult){
+          if (botData.intent.length < 1){
             //Send message to chatbot brain
             socket.write(message);
             await socket.on('data', function(d){
               botData.speech = d.toString();
               console.log("Recieved: " + botData.speech);
               socket.removeAllListeners(['data']);
+              response.end(JSON.stringify(botData));
             });
           }
-
-          response.end(JSON.stringify(botData));
 
 	   } else {
 	   		response.end("invalid question");

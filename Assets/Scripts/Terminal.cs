@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System;
+using System.Collections;
 
 /// <summary>
 /// Looks in the Server folder and runs the server.bat file 
@@ -47,14 +48,10 @@ public class Terminal : MonoBehaviour {
             //Can't just use 'powershell.exe' here because it defaults to 32bit?
             FileName = "c:/windows/syswow64/WindowsPowerShell/v1.0/powershell.exe",
             WorkingDirectory = Directory.GetCurrentDirectory() + "/Server",
-            Arguments = "./server.bat",
-            UseShellExecute = false,
-            RedirectStandardOutput = true
+            Arguments = "./server.bat"
         };
 
         Process process = Process.Start(info);
-        process.OutputDataReceived += (sender, args) => OnDataReceived(args.Data);
-        process.BeginOutputReadLine();
 
         Thread.Sleep(1000);
 
@@ -63,11 +60,11 @@ public class Terminal : MonoBehaviour {
         python = Process.GetProcesses().FirstOrDefault(x => x.ProcessName == "python");
     }
 
+    int pingCount = 0;
     void OnTestQuestionAnswered(BotData data) {
+        bool success = data.speech == Config.TEST_ANSWER;
         //this only works when called in the same thread as GetActiveWindow (I think?)
         SwitchToThisWindow(currWindow, true);
-        //tell anyone who cares
-        bool success = data.speech == Config.TEST_ANSWER;
         initialized?.Invoke(success);
     }
 

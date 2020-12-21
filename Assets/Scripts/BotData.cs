@@ -1,6 +1,7 @@
 ﻿[System.Serializable]
 public class BotData {
-    public string youtube;
-    public string location;
+
+    public string intent;
+    public string value;
     public string speech;
 }

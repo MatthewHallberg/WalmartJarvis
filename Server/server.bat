@@ -1,4 +1,6 @@
 node --version
 python --version
-start node chatbot.js & start python chatbrain.py
+start python chatbrain.py
+timeout /t 1 /nobreak
+start node chatbot.js  
 

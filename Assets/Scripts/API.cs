@@ -52,9 +52,7 @@ public class API : Singleton<API> {
             } else {
                 string response = www.downloadHandler.text;
                 print("RESPONSE: " + response);
-                if (response.Length > 0) {
-                    callback(JsonUtility.FromJson<BotData>(response));
-                }
+                callback(JsonUtility.FromJson<BotData>(response));
             }
         }
     }

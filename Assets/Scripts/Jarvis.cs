@@ -23,8 +23,18 @@ public class Jarvis : MonoBehaviour {
     }
 
     void OnChatBotRequestReceived(BotData botData) {
-        print(botData.speech);
-        speech.SpeakWords(botData.speech);
+
+        switch (botData.intent) {
+            case "YoutTube":
+                speech.SpeakWords("loading video...");
+                break;
+            case "website":
+                speech.SpeakWords("loading website...");
+                break;
+            default:
+                speech.SpeakWords(botData.speech);
+                break;
+        }
     }
 
     void OnInitializedStatusRecieved(bool status) {
