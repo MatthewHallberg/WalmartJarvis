@@ -49,6 +49,7 @@ public class Speech : MonoBehaviour {
 
     void OnApplicationFocus(bool focus) {
         //restart speech since it stops in the background
+        StopAllCoroutines();
         OnSpeechResult("error");
     }
 
@@ -67,17 +68,15 @@ public class Speech : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         ListenForKeyword();
-        StopAllCoroutines();
     }
 
     public void StartSpeechRoutine() {
         keywordRecognizer.Start();
-        StartCoroutine(ForceSpeechStopRoutine());
-        print("Speech Started...");
     }
 
     IEnumerator ForceSpeechStopRoutine() {
         yield return new WaitForSeconds(5f);
+        print("SHUTTING DOWN");
         OnSpeechResult("error");
     }
 
@@ -90,6 +89,7 @@ public class Speech : MonoBehaviour {
     public void ListenForSpeech() {
         m_DictationRecognizer.Start();
         print("Listening...");
+        StartCoroutine(ForceSpeechStopRoutine());
     }
 
     void ListenForKeyword() {
