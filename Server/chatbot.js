@@ -1,7 +1,5 @@
 var http = require('http');
 const {Wit, log} = require('node-wit');
-const { StringDecoder } = require('string_decoder');
-const decoder = new StringDecoder('utf8');
 
 //create socket to connect with python process
 var socket = require('net').Socket();

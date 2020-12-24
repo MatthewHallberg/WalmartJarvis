@@ -14,6 +14,8 @@ http.createServer(function (req, response) {
 
   req.on('end', async function () {
 
+     message = unescape(message);
+
     console.log("Searching for: " + message);
 
     var videoId = await new Promise((resolve, reject) => {
@@ -32,8 +34,17 @@ http.createServer(function (req, response) {
           });
      });
 
+    //grab first
     var info = await ytdl.getInfo(videoId);
-    var hardlink = info.formats[0].url;
+    var hardlink = '';
+    for (var i = 0; i < info.formats.length; i++){
+      var element = info.formats[i];
+      if (!element.url.includes("manifest")){
+          hardlink = element.url;
+          break;
+        }
+    }
+
     var videoURL = 'https://www.youtube.com/watch?v=' + videoId;
     console.log(videoURL);
     response.end(hardlink);
