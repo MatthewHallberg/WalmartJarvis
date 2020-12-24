@@ -1,7 +1,7 @@
-﻿using SpeechLib;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
+using SpeechLib;
 
 public class Speech : MonoBehaviour {
 
@@ -20,6 +20,14 @@ public class Speech : MonoBehaviour {
     bool isSpeaking;
 
     void Awake() {
+
+        //to add additional voices you must make them available for 32 bit apps
+        //https://winaero.com/unlock-extra-voices-windows-10/
+        foreach (ISpeechObjectToken name in voice.GetVoices()) {
+            print("Voice Available: " + name.GetDescription());
+        }
+        voice.Voice = voice.GetVoices().Item(2);
+
         //setup keyword reecognizer
         keywordRecognizer = new KeywordRecognizer(new string[] { Config.KEYWORD }, ConfidenceLevel.Low);
         keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
@@ -37,6 +45,11 @@ public class Speech : MonoBehaviour {
         m_DictationRecognizer.DictationError += (error, hresult) => {
             StartCoroutine(OnSpeechResult("error"));
         };
+    }
+
+    void OnApplicationFocus(bool focus) {
+        //restart speech since it stops in the background
+        OnSpeechResult("error");
     }
 
     IEnumerator OnSpeechResult(string speech) {
