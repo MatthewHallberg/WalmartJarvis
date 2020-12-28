@@ -149,7 +149,7 @@ public class OVRGrabbable : MonoBehaviour
         m_grabbedKinematic = GetComponent<Rigidbody>().isKinematic;
     }
 
-    void OnDestroy()
+    protected virtual void OnDestroy()
     {
         if (m_grabbedBy != null)
         {

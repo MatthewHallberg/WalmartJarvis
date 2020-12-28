@@ -9,8 +9,7 @@ public class CamFeed : MonoBehaviour {
     }
 
     void StartWebCam() {
-        //logitech 1920 by 1080
-        WebCamTexture webcamTexture = new WebCamTexture(GetWebCamDevice(), 1280, 960, 90);
+        WebCamTexture webcamTexture = new WebCamTexture(GetWebCamDevice(), 2560, 960, 30);
         camMaterial.mainTexture = webcamTexture;
         webcamTexture.Play();
     }
@@ -20,6 +19,9 @@ public class CamFeed : MonoBehaviour {
         foreach (WebCamDevice device in devices) {
             print("WEBCAM: " + device.name);
         }
-        return devices[devices.Length - 1].name;
+
+        WebCamDevice desiredDevice = devices[devices.Length - 1];
+        print(desiredDevice.availableResolutions);
+        return desiredDevice.name;
     }
 }

@@ -238,7 +238,7 @@ public class AudioManagerInspector : Editor {
 						Event.current.Use();
 					}
 					if ( i == editGroup ) {
-						soundGroups[i].name = GUILayout.TextField( soundGroups[i].name, GUILayout.MinWidth( Screen.width - 80f ) );
+						soundGroups[i].name = GUILayout.TextField( soundGroups[i].name, GUILayout.MinWidth(Screen.width - 80f ) );
 					} else {
 						GUILayout.Label( soundGroups[i].name, ( i == selectedGroup ) ? EditorStyles.whiteLabel : EditorStyles.label, GUILayout.ExpandWidth( true ) );
 					}
@@ -422,12 +422,12 @@ public class AudioManagerInspector : Editor {
 						EditorGUILayout.PropertyField( soundFX, true );
 						EditorGUILayout.BeginHorizontal();
 						GUILayout.FlexibleSpace();
-						if ( GUILayout.Button( "Delete FX", GUILayout.Width( Screen.width / 3.0f ) ) ) {
+						if ( GUILayout.Button( "Delete FX", GUILayout.Width(Screen.width / 3.0f ) ) ) {
 							if ( EditorUtility.DisplayDialog( "Delete " + soundFX.displayName, "Are you sure?", "Yes", "No!" ) ) {
 								deleteSoundIdx = i;
 							}
 						}
-						if ( GUILayout.Button( "Duplicate FX", GUILayout.Width( Screen.width / 3.0f ) ) ) {
+						if ( GUILayout.Button( "Duplicate FX", GUILayout.Width(Screen.width / 3.0f ) ) ) {
 							dupeSoundIdx = i;
 						}
 						GUILayout.FlexibleSpace();

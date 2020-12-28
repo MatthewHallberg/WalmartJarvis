@@ -12,6 +12,10 @@
         DetectPinch();
     }
 
+    public void ForceRelease() {
+        m_grabbedObj = null;
+    }
+
     void DetectPinch() {
         float currPinch = hand.GetFingerPinchStrength(OVRHand.HandFinger.Index);
         if (!m_grabbedObj && currPinch > Config.PINCH_THRESHOLD) {

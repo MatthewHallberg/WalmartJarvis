@@ -13,6 +13,7 @@ public class Config : MonoBehaviour {
     public static readonly string TEST_ANSWER = "Two.";
 
     public static readonly float PINCH_THRESHOLD = .7f;
+    public static readonly float TRASH_DISTANCE = .5f;
 
     void Start() {
         Application.targetFrameRate = 60;

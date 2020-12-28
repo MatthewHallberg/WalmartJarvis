@@ -6,6 +6,8 @@ public class HandGrabbable : OVRGrabbable {
 
     const float ROTATE_SPEED = 6f;
 
+    public float ScaleDevisor = 1;
+
     Quaternion desiredRotation;
     bool canRotate;
     float lastScaleDelta = -1;
@@ -44,6 +46,14 @@ public class HandGrabbable : OVRGrabbable {
         SetDesiredRotation();
     }
 
+    public void ForceRelease() {
+        HandGrabber grabber = grabbedBy.GetComponent<HandGrabber>();
+        if (grabber != null) {
+            grabber.ForceRelease();
+        }
+        base.OnDestroy();
+    }
+
     void Update() {
         if (!canRotate) {
             transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * ROTATE_SPEED);
@@ -57,7 +67,7 @@ public class HandGrabbable : OVRGrabbable {
                 float currScaleDelta = Vector3.Distance(hands[0].transform.position, hands[1].transform.position);
                 if (lastScaleDelta != -1) {
                     float currScaleAmount = currScaleDelta - lastScaleDelta;
-                    transform.localScale += Vector3.one * currScaleAmount;
+                    transform.localScale += (Vector3.one * currScaleAmount) / ScaleDevisor;
                 }
                 lastScaleDelta = currScaleDelta;
             }

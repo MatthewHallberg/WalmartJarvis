@@ -47,7 +47,10 @@ public class API : Singleton<API> {
             UnityWebRequest www = UnityWebRequest.Post(CHATBOT, message);
             yield return www.SendWebRequest();
             if (www.isNetworkError || www.isHttpError) {
-                Debug.Log(www.error);
+                BotData botDataError = new BotData {
+                    speech = www.error
+                };
+                callback(botDataError);
             } else {
                 string response = www.downloadHandler.text;
                 print("RESPONSE: " + response);

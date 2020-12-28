@@ -241,6 +241,12 @@ public class OVRGrabber : MonoBehaviour
             for (int j = 0; j < grabbable.grabPoints.Length; ++j)
             {
                 Collider grabbableCollider = grabbable.grabPoints[j];
+
+                if (grabbableCollider == null) {
+                    m_grabbedObj = null;
+                    return;
+                }
+
                 // Store the closest grabbable
                 Vector3 closestPointOnBounds = grabbableCollider.ClosestPointOnBounds(m_gripTransform.position);
                 float grabbableMagSq = (m_gripTransform.position - closestPointOnBounds).sqrMagnitude;
@@ -327,6 +333,11 @@ public class OVRGrabber : MonoBehaviour
         Rigidbody grabbedRigidbody = m_grabbedObj.grabbedRigidbody;
         Vector3 grabbablePosition = pos + rot * m_grabbedObjectPosOff;
         Quaternion grabbableRotation = rot * m_grabbedObjectRotOff;
+
+        if (grabbedRigidbody == null) {
+            m_grabbedObj = null;
+            return;
+        }
 
         if (forceTeleport)
         {

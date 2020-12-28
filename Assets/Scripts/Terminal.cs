@@ -56,8 +56,12 @@ public class Terminal : MonoBehaviour {
     void OnTestQuestionAnswered(BotData data) {
         bool success = data.speech == Config.TEST_ANSWER;
         //this only works when called in the same thread as GetActiveWindow (I think?)
-        SwitchToThisWindow(currWindow, true);
-        initialized?.Invoke(success);
+        if (!success) {
+            API.Instance.MakeChatBotRequest(Config.TEST_QUESTION, OnTestQuestionAnswered);
+        } else {
+            SwitchToThisWindow(currWindow, true);
+            initialized?.Invoke(success);
+        }
     }
 
     void OnDataReceived(string data) {
