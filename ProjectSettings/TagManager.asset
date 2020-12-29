@@ -13,6 +13,9 @@ TagManager:
   - UI
   - 
   - 
+  - ArucoCameraBackground
+  - ArucoCameraStereoBackground1
+  - ArucoCameraStereoBackground2
   - 
   - 
   - 
@@ -34,9 +37,6 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - Spatial Awareness
   m_SortingLayers:
   - name: Default
     uniqueID: 0

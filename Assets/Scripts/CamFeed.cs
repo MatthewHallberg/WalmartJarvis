@@ -4,12 +4,18 @@ public class CamFeed : MonoBehaviour {
 
     public Material camMaterial;
 
+    WebCamTexture webcamTexture;
+
     void Start() {
         StartWebCam();
     }
 
+    public WebCamTexture GetCamTexture() {
+        return webcamTexture;
+    }
+
     void StartWebCam() {
-        WebCamTexture webcamTexture = new WebCamTexture(GetWebCamDevice(), 2560, 960, 30);
+        webcamTexture = new WebCamTexture(GetWebCamDevice(), 2560, 960, 30);
         camMaterial.mainTexture = webcamTexture;
         webcamTexture.Play();
     }
