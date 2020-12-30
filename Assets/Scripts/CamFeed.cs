@@ -21,7 +21,7 @@ public class CamFeed : Singleton<CamFeed> {
 
     void Update() {
         if (imageRequested && webcamTexture.didUpdateThisFrame && webcamTexture.width > 100) {
-            //use scale and offset to get only second half of image
+            //use scale and offset to get only second half of image. 
             Graphics.Blit(webcamTexture, renderTexture, scale, offset);
             AsyncGPUReadback.Request(renderTexture, 0, TextureFormat.RGB24, OnCompleteReadback);
         }

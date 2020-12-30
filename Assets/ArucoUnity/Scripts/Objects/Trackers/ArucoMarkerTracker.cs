@@ -196,7 +196,7 @@ namespace ArucoUnity.Objects.Trackers
           if (arucoTracker.ArucoObjects[dictionary].TryGetValue(detectedMarkerHashCode, out foundArucoObject))
           {
             var localPosition = MarkerTvecs[cameraId][dictionary].At(i).ToPosition() * foundArucoObject.MarkerSideLength / estimatePoseMarkerLength;
-            arucoCameraDisplay.PlaceArucoObject(foundArucoObject.transform, cameraId, localPosition,
+                        arucoCameraDisplay.PlaceArucoObject(foundArucoObject.transform, cameraId, localPosition,
               MarkerRvecs[cameraId][dictionary].At(i).ToRotation());
           }
         }

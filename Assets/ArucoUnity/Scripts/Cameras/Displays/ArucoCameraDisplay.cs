@@ -13,6 +13,11 @@ namespace ArucoUnity.Cameras.Displays {
 
         public const float cameraBackgroundDistance = 1f;
 
+        //HACK: I really don't feel like figuring out how this works
+        public float Distance = 1;
+        public float Multiplier = 1.2f;
+        public float ScaleInMeters = .0508f;
+
         // IArucoCameraDisplay properties
 
         public virtual Camera[] Cameras { get; protected set; }
@@ -57,13 +62,20 @@ namespace ArucoUnity.Cameras.Displays {
 
         // IArucoCameraDisplay methods
 
+        
         public virtual void PlaceArucoObject(Transform arucoObject, int cameraId, Vector3 localPosition, Quaternion localRotation) {
 
             var parent = arucoObject.transform.parent;
             arucoObject.transform.SetParent(Cameras[cameraId].transform);
 
-            arucoObject.transform.localPosition = localPosition;
-            arucoObject.transform.localRotation = localRotation;
+            //HACK: this is VERY not correct lol
+            localPosition.x *= Multiplier;
+            localPosition.y *= Multiplier;
+            localPosition.z *= (Multiplier / (Distance * 100000));
+
+            arucoObject.transform.localPosition = Vector3.Lerp(arucoObject.transform.localPosition, localPosition, Time.deltaTime * 12f);
+            arucoObject.transform.localRotation = Quaternion.Lerp(arucoObject.transform.localRotation, localRotation, Time.deltaTime * 12f);
+            arucoObject.transform.localScale = Vector3.one * ScaleInMeters;
 
             arucoObject.transform.SetParent(parent);
             arucoObject.gameObject.SetActive(true);
