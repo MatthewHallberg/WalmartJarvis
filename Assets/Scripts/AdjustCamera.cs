@@ -6,7 +6,7 @@ public class AdjustCamera : MonoBehaviour {
     public Transform rightCam;
 
     [Header("Eye Distance")]
-    [Range(2.2f, 2.5f)]
+    [Range(2.5f, 3.5f)]
     public float eyeDistance;
 
     [Header("X-Shift")]
@@ -18,7 +18,7 @@ public class AdjustCamera : MonoBehaviour {
     public float yShift;
 
     [Header("Z-SHIFT")]
-    [Range(-2f, 0f)]
+    [Range(-1f, -.3f)]
     public float zShift;
 
     void Start() {

@@ -2,22 +2,29 @@
 
 public class CamFeed : MonoBehaviour {
 
-    public Material camMaterial;
+    public Material leftMat;
+    public Material rightMat;
 
     WebCamTexture webcamTexture;
+
+    bool initialized;
 
     void Start() {
         StartWebCam();
     }
 
-    public WebCamTexture GetCamTexture() {
-        return webcamTexture;
+    void Update() {
+
+        if (webcamTexture.width > 100) {
+            initialized = true;
+        }
     }
 
     void StartWebCam() {
         webcamTexture = new WebCamTexture(GetWebCamDevice(), 2560, 960, 30);
-        camMaterial.mainTexture = webcamTexture;
         webcamTexture.Play();
+        leftMat.mainTexture = webcamTexture;
+        rightMat.mainTexture = webcamTexture;
     }
 
     string GetWebCamDevice() {
@@ -27,7 +34,7 @@ public class CamFeed : MonoBehaviour {
         }
 
         WebCamDevice desiredDevice = devices[devices.Length - 1];
-        print(desiredDevice.availableResolutions);
+        print("CHOSEN: " + desiredDevice.name);
         return desiredDevice.name;
     }
 }

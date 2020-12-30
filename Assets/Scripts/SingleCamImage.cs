@@ -1,41 +1,16 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CamFeed))]
-public class SingleCamImage : MonoBehaviour {
-
-    public Renderer testRend;
+public class SingleCamImage : Singleton<SingleCamImage> {
 
     CamFeed cameraFeed;
     Texture2D tempTexture;
     WebCamTexture webCamTex;
     bool intialized;
 
-    void Awake() {
+    void Start() {
         cameraFeed = GetComponent<CamFeed>();
-    }
-
-    void Update() {
-
-        if (intialized) {
-            Texture2D halfCam = new Texture2D(GetImageWidth(), GetImageHeight(),TextureFormat.RGB24, false);
-            halfCam.LoadRawTextureData(GetImage());
-            testRend.material.mainTexture = halfCam;
-            halfCam.Apply();
-        }
-
-        if (intialized) {
-            return;
-        }
-
-        webCamTex = cameraFeed.GetCamTexture();
-
-        if (webCamTex.width > 100) {
-            tempTexture = new Texture2D(webCamTex.width, webCamTex.height, TextureFormat.RGB24, false);
-            intialized = true;
-        }
     }
 
     public int GetImageHeight() {
