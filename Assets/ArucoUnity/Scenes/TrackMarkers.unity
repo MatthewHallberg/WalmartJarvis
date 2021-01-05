@@ -38,21 +38,21 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableBakedLightmaps: 0
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 12
     m_Resolution: 2
@@ -704,6 +704,131 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934518933}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1277004020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1277004021}
+  - component: {fileID: 1277004023}
+  - component: {fileID: 1277004022}
+  m_Layer: 8
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1277004021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277004020}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 1}
+  m_LocalScale: {x: 6.9062767, y: 5.318932, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1286660763}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1277004022
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277004020}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 4294967295
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: acb1a5a5bf0307c43b3632574da67af0, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1277004023
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277004020}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1286660761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1286660763}
+  - component: {fileID: 1286660762}
+  m_Layer: 0
+  m_Name: TestDisortShader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1286660762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286660761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f27a44924caa74d88d1ef811d10f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  undistortMat: {fileID: 2100000, guid: acb1a5a5bf0307c43b3632574da67af0, type: 2}
+  viewingCamera: {fileID: 20452964809273025}
+--- !u!4 &1286660763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286660761}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1277004021}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1647296276
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,9 +990,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4398987091760601}
   - component: {fileID: 114393126605524721}
-  - component: {fileID: 114522793815855647}
   - component: {fileID: 114034834106356413}
   - component: {fileID: 114715582606973829}
+  - component: {fileID: 1647954160465074}
   m_Layer: 0
   m_Name: ArucoWebcamCalibrated
   m_TagString: Untagged
@@ -875,6 +1000,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1647954160465074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647954160465073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb848ecd8f05544e9393e5735213780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoStart: 1
+  CameraParametersController: {fileID: 114034834106356413}
+  arucoCamera: {fileID: 114393126605524721}
+  rectificationType: 0
+  perspectiveFieldOfViews:
+  - 113
 --- !u!1 &1807314893552087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1178,7 @@ Camera:
     height: 1
   near clip plane: 0.05
   far clip plane: 1000
-  field of view: 113.1
+  field of view: 113
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
@@ -1114,7 +1257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoLoadFile: 1
   cameraParametersFolderPath: ArucoUnity/CameraParameters/
-  cameraParametersFilename: FisheyeSingle.xml
+  cameraParametersFilename: calibration.xml
 --- !u!114 &114393126605524721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1129,22 +1272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoStart: 1
   webcamId: 1
---- !u!114 &114522793815855647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1647954160465073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e044568ea72405e49bf56df52f9d2b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoStart: 1
-  CameraParametersController: {fileID: 114034834106356413}
-  arucoCamera: {fileID: 114393126605524721}
-  rectificationScalingFactor: 1
+  undistort: {fileID: 2100000, guid: acb1a5a5bf0307c43b3632574da67af0, type: 2}
 --- !u!114 &114704471780816309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,11 +1291,11 @@ MonoBehaviour:
   - {fileID: 887812763}
   arucoCameraDisplay: {fileID: 114715582606973829}
   refineDetectedMarkers: 1
-  drawDetectedMarkers: 1
+  drawDetectedMarkers: 0
   drawRejectedCandidates: 0
-  drawAxes: 1
-  drawDetectedCharucoMarkers: 1
-  drawDetectedDiamonds: 1
+  drawAxes: 0
+  drawDetectedCharucoMarkers: 0
+  drawDetectedDiamonds: 0
 --- !u!114 &114710025868095055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1214,7 +1342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoStart: 1
   arucoCamera: {fileID: 114393126605524721}
-  arucoCameraUndistortion: {fileID: 114522793815855647}
+  arucoCameraUndistortion: {fileID: 1647954160465074}
   cameras:
   - {fileID: 20452964809273025}
   backgroundCameras:

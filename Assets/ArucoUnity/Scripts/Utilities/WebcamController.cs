@@ -103,7 +103,7 @@ namespace ArucoUnity.Cameras
       {
         var webcamDevice = WebCamTexture.devices[webcamId];
         Devices.Add(webcamDevice);
-        Textures.Add(CamFeed.Instance.GetWebCamTexture());
+        Textures.Add(new WebCamTexture(webcamDevice.name));
       }
     }
 

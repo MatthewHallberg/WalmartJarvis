@@ -102,6 +102,7 @@ namespace ArucoUnity.Cameras.Undistortions
     /// </summary>
     protected override void InitializeRectification()
     {
+
       for (int cameraId = 0; cameraId < CameraParameters.CameraNumber; cameraId++)
       {
         float imageWidth = CameraParameters.ImageWidths[cameraId];
@@ -115,6 +116,7 @@ namespace ArucoUnity.Cameras.Undistortions
               0, cameraFocalLength, imageHeight / 2,
               0, 0, 1
             }).Clone();
+
         }
         else
         {
@@ -124,9 +126,9 @@ namespace ArucoUnity.Cameras.Undistortions
               0, imageHeight / 3.1415, 0,
               0, 0, 1
             }).Clone();
-        }
 
-        RectificationMatrices[cameraId] = noRectificationMatrix;
+                }
+                RectificationMatrices[cameraId] = noRectificationMatrix;
       }
     }
 

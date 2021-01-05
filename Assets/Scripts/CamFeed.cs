@@ -4,14 +4,17 @@ using UnityEngine.Rendering;
 
 public class CamFeed : Singleton<CamFeed> {
 
-    public RenderTexture renderTexture;
-    public Material leftMat;
-    public Material rightMat;
+    public RenderTexture leftEyeRender;
+    public RenderTexture rightEyeRender;
+    public Renderer leftEye;
+    public Renderer rightEye;
 
     WebCamTexture webcamTexture;
     byte[] croppedImage;
-    Vector2 scale = new Vector2(.5f, 1);
-    Vector2 offset = new Vector2(.5f, 0);
+    Vector2 scale = new Vector2(-.5f, -1);
+    Vector2 leftOffset = new Vector2(.5f, 1);
+    Vector2 rightOffset = new Vector2(1f, 1);
+
     bool imageRequested;
 
     protected override void Awake() {
@@ -20,10 +23,15 @@ public class CamFeed : Singleton<CamFeed> {
     }
 
     void Update() {
-        if (imageRequested && webcamTexture.didUpdateThisFrame && webcamTexture.width > 100) {
-            //use scale and offset to get only second half of image. 
-            Graphics.Blit(webcamTexture, renderTexture, scale, offset);
-            AsyncGPUReadback.Request(renderTexture, 0, TextureFormat.RGB24, OnCompleteReadback);
+
+        if (webcamTexture.didUpdateThisFrame && webcamTexture.width > 100) {
+            //use scale and offset to get only second half of image, also it needs flipped on both axes
+            Graphics.Blit(webcamTexture, leftEyeRender, scale, leftOffset);
+            Graphics.Blit(webcamTexture, rightEyeRender, scale, rightOffset);
+
+            if (imageRequested) {
+                AsyncGPUReadback.Request(leftEyeRender, 0, TextureFormat.RGB24, OnCompleteReadback);
+            }
         }
     }
 
@@ -40,8 +48,8 @@ public class CamFeed : Singleton<CamFeed> {
         //set up webcam and cam textures for each eye
         webcamTexture = new WebCamTexture(GetWebCamDevice(), 2560, 960, 30);
         webcamTexture.Play();
-        leftMat.mainTexture = webcamTexture;
-        rightMat.mainTexture = webcamTexture;
+        leftEye.material.mainTexture = leftEyeRender;
+        leftEye.material.mainTexture = rightEyeRender;
     }
 
     void OnCompleteReadback(AsyncGPUReadbackRequest request) {
