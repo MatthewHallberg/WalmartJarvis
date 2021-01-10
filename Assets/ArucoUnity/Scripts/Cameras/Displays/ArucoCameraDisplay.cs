@@ -11,10 +11,9 @@ namespace ArucoUnity.Cameras.Displays
   /// </summary>
   public abstract class ArucoCameraDisplay : ArucoCameraController, IArucoCameraDisplay
   {
-    // Constants
-    public Vector3 Offset;
-
-    public const float cameraBackgroundDistance = 1f;
+    //Constants
+    public Vector3 PosOffset = Vector3.zero;
+    public float cameraBackgroundDistance = 1f;
 
     // IArucoCameraDisplay properties
 
@@ -72,7 +71,7 @@ namespace ArucoUnity.Cameras.Displays
       arucoObject.transform.SetParent(Cameras[cameraId].transform);
 
       //HACK: Add offset here since we dont want to move background:
-      localPosition += Offset;
+      localPosition = OffsetObjectPosition(localPosition);
 
       arucoObject.transform.localPosition = localPosition;
       arucoObject.transform.localRotation = localRotation;
@@ -81,13 +80,27 @@ namespace ArucoUnity.Cameras.Displays
       arucoObject.gameObject.SetActive(true);
     }
 
-    // Methods
+        Vector3 OffsetObjectPosition(Vector3 currPosition) {
+            float imageWidth = ArucoCameraUndistortion.CameraParameters.ImageWidths[0];
+            float imageHeight = ArucoCameraUndistortion.CameraParameters.ImageHeights[0];
+            Vector2 focalLength = ArucoCameraUndistortion.RectifiedCameraMatrices[0].GetCameraFocalLengths();
+            Vector2 principalPoint = ArucoCameraUndistortion.RectifiedCameraMatrices[0].GetCameraPrincipalPoint();
 
-    /// <summary>
-    /// Configures the <see cref="BackgroundCameras"/> and the <see cref="Backgrounds"/> according to the
-    /// <see cref="ArucoCameraUndistortion"/> if set otherwise with default values.
-    /// </summary>
-    protected virtual void ConfigureDisplay()
+            float localPositionX = ((0.5f * imageWidth - principalPoint.x) / focalLength.x * cameraBackgroundDistance) + PosOffset.x;
+            float localPositionY = -((0.5f * imageHeight - principalPoint.y) / focalLength.y * cameraBackgroundDistance) + PosOffset.y;
+
+            Vector3 camBackgroundPos = new Vector3(localPositionX, localPositionY, cameraBackgroundDistance);
+
+            return currPosition + camBackgroundPos;
+        }
+
+        // Methods
+
+        /// <summary>
+        /// Configures the <see cref="BackgroundCameras"/> and the <see cref="Backgrounds"/> according to the
+        /// <see cref="ArucoCameraUndistortion"/> if set otherwise with default values.
+        /// </summary>
+        protected virtual void ConfigureDisplay()
     {
       // Sets the background texture
       for (int cameraId = 0; cameraId < ArucoCamera.CameraNumber; cameraId++)

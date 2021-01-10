@@ -274,7 +274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310384208}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.967, y: 0.009, z: -0.615}
+  m_LocalPosition: {x: -3.065, y: 0.024, z: -0.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1281527929}
@@ -305,8 +305,8 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 3
-  field of view: 67.380135
-  orthographic: 0
+  field of view: 74.594025
+  orthographic: 1
   orthographic size: 0.5
   m_Depth: -1
   m_CullingMask:
@@ -558,8 +558,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.015}
-  m_SizeDelta: {x: 1.8, y: 1.66}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2.06, y: 2.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &477758435
 MonoBehaviour:
@@ -825,7 +825,7 @@ MonoBehaviour:
   arucoCamera: {fileID: 727663271}
   rectificationType: 0
   perspectiveFieldOfViews:
-  - 140
+  - 104
 --- !u!114 &727663269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -840,12 +840,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoStart: 1
   Offset: {x: 0, y: 0, z: 0}
+  ScaleMult: 1
   arucoCamera: {fileID: 727663271}
   arucoCameraUndistortion: {fileID: 727663268}
   cameras:
   - {fileID: 1772449960}
   backgroundCameras:
-  - {fileID: 310384211}
+  - {fileID: 1772449960}
   backgrounds:
   - {fileID: 1939497127}
 --- !u!114 &727663270
@@ -1498,7 +1499,7 @@ GameObject:
   - component: {fileID: 1281527930}
   - component: {fileID: 1281527932}
   m_Layer: 2
-  m_Name: AdjustmentCameraFeed
+  m_Name: CameraFeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1536,10 +1537,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftCam: {fileID: 310384209}
   rightCam: {fileID: 2068383857}
-  eyeDistance: 2.963
-  xShift: -0.004
-  yShift: 0.009
-  zShift: -0.615
+  eyeDistance: 3.039
+  xShift: -0.026
+  yShift: 0.024
+  zShift: -0.519
 --- !u!114 &1281527931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2229,9 +2230,9 @@ RectTransform:
   m_Father: {fileID: 291533306}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.621, y: -0.6368}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.28, y: 0.19}
   m_SizeDelta: {x: 30, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1747203452
@@ -2405,7 +2406,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 140
+  field of view: 104
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -2797,7 +2798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068383856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.959, y: 0.009, z: -0.615}
+  m_LocalPosition: {x: 3.013, y: 0.024, z: -0.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1281527929}
@@ -2828,8 +2829,8 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 3
-  field of view: 67.380135
-  orthographic: 0
+  field of view: 74.594025
+  orthographic: 1
   orthographic size: 0.5
   m_Depth: -1
   m_CullingMask:
