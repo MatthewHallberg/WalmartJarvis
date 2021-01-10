@@ -54,8 +54,9 @@ namespace ArucoUnity.Objects.Trackers
 
     public virtual void AddArucoObject(ArucoObject arucoObject)
     {
-      // Make sure the object is started and initialized
-      arucoObject.gameObject.SetActive(true);
+
+            // Make sure the object is started and initialized
+            arucoObject.gameObject.SetActive(true);
 
       // Try to find a list with the same dictionary than the new ArUco object
       Dictionary<int, ArucoObject> arucoObjectsCollection = null;

@@ -43,7 +43,7 @@ namespace ArucoUnity.Cameras
       {
         for (int cameraId = 0; cameraId < Textures.Count; cameraId++)
         {
-          textures2D[cameraId].SetPixels32(Textures[cameraId].GetPixels32());
+          //textures2D[cameraId].SetPixels32(Textures[cameraId].GetPixels32());
         }
         return textures2D;
       }
@@ -85,12 +85,12 @@ namespace ArucoUnity.Cameras
       Textures = new List<WebCamTexture>();
     }
 
-    // Methods
+        // Methods
 
-    /// <summary>
-    /// Configures <see cref="Devices"/> and <see cref="Textures"/> from <see cref="Ids"/>.
-    /// </summary>
-    public void Configure()
+        /// <summary>
+        /// Configures <see cref="Devices"/> and <see cref="Textures"/> from <see cref="Ids"/>.
+        /// </summary>
+        public void Configure()
     {
       IsStarted = false;
       IsConfigured = true;
@@ -99,12 +99,15 @@ namespace ArucoUnity.Cameras
       Textures.Clear();
       Textures2D.Clear();
 
+            print("Configuring webcam...");
       foreach (var webcamId in Ids)
       {
         var webcamDevice = WebCamTexture.devices[webcamId];
         Devices.Add(webcamDevice);
-        Textures.Add(new WebCamTexture(webcamDevice.name));
-      }
+        //Textures.Add(new WebCamTexture(webcamDevice.name));
+        //HACK: pass in our webcam
+         Textures.Add(CamFeed.Instance.GetWebCamTexture());
+        }
     }
 
     /// <summary>
@@ -152,7 +155,7 @@ namespace ArucoUnity.Cameras
       starting = true;
       foreach (var webcam in Textures)
       {
-        webcam.Play();
+        //webcam.Play();
       }
 
       bool webcamsStarted;
@@ -168,7 +171,8 @@ namespace ArucoUnity.Cameras
         {
           foreach (var webcam in Textures)
           {
-            textures2D.Add(new Texture2D(webcam.width, webcam.height, Textures2DFormat, false));
+            //HACK: cut texture in half
+            textures2D.Add(new Texture2D(webcam.width/2, webcam.height/2, Textures2DFormat, false));
           }
 
           starting = false;

@@ -69,7 +69,7 @@ namespace ArucoUnity.Objects.Trackers
     {
       base.Awake();
 
-      MarkerTracker = new ArucoMarkerTracker();
+            MarkerTracker = new ArucoMarkerTracker();
       additionalTrackers = new Dictionary<Type, ArucoObjectTracker>()
         {
           { typeof(ArucoGridBoard), new ArucoGridBoardTracker() },
@@ -90,7 +90,8 @@ namespace ArucoUnity.Objects.Trackers
     /// </summary>
     protected override void Configuring()
     {
-      if (ArucoCameraDisplay == null)
+
+            if (ArucoCameraDisplay == null)
       {
         throw new ArgumentNullException("ArucoCameraDisplay", "This property needs to be set for the configuration.");
       }
@@ -112,9 +113,9 @@ namespace ArucoUnity.Objects.Trackers
       MarkerTracker.Activate(this);
       foreach (var arucoObjectDictionary in ArucoObjects)
       {
-        foreach (var arucoObject in arucoObjectDictionary.Value)
+                foreach (var arucoObject in arucoObjectDictionary.Value)
         {
-          ArucoObjectsController_ArucoObjectAdded(arucoObject.Value);
+                    ArucoObjectsController_ArucoObjectAdded(arucoObject.Value);
         }
       }
 

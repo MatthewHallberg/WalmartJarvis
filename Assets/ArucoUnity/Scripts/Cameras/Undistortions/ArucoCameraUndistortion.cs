@@ -96,7 +96,8 @@ namespace ArucoUnity.Cameras.Undistortions
 
       ArucoCamera.UndistortRectifyImages += ArucoCamera_UndistortRectifyImages;
       remapThread = new ArucoCameraSeparateThread(ArucoCamera, UndistortRectifyImages) { CopyBackImages = true };
-      remapThread.Start();
+      //HACK: turn off openCV undistort thread since we do it in shader
+     // remapThread.Start();
     }
 
     /// <summary>
@@ -134,10 +135,10 @@ namespace ArucoUnity.Cameras.Undistortions
     {
       for (int cameraId = 0; cameraId < CameraParameters.CameraNumber; cameraId++)
       {
-        Cv.Remap(images[cameraId], images[cameraId], UndistortionRectificationMaps[cameraId][0],
-          UndistortionRectificationMaps[cameraId][1], Cv.InterpolationFlags.Linear);
-      }
-    }
+                Cv.Remap(images[cameraId], images[cameraId], UndistortionRectificationMaps[cameraId][0],
+                  UndistortionRectificationMaps[cameraId][1], Cv.InterpolationFlags.Linear);
+            }
+        }
 
     /// <summary>
     /// Initializes the <see cref="RectificationMatrices"/> of each camera image.

@@ -65,7 +65,6 @@ namespace ArucoUnity.Cameras
     protected override void Configuring()
     {
       base.Configuring();
-
       WebcamController.Ids.Clear();
       WebcamController.Ids.Add(WebcamId);
       WebcamController.Configure();
@@ -103,26 +102,14 @@ namespace ArucoUnity.Cameras
         /// <summary>
         /// Copy current webcam images to <see cref="ArucoCamera.NextImages"/>.
         /// </summary>
-        public Material undistort;
-        Texture2D temp;
         protected override bool UpdatingImages()
-    {
-
-            //HACK: cut byte array in half
-            int sourceWidth = WebcamController.Textures2D[cameraId].width;
-            int sourceHeight = WebcamController.Textures2D[cameraId].height;
-
-            byte[] croppedImage = CropImageArray(WebcamController.Textures2D[cameraId].GetRawTextureData(), sourceWidth, 24, sourceWidth / 2, sourceHeight);
-
-            //HACK: Load to texture to test undistort shader
-            if (temp == null) {
-                temp = new Texture2D(1280, 960, TextureFormat.RGB24, false);
+    {       
+            if (CamFeed.Instance.GetLeftImageBytes() != null) {
+                //HACK: cam image in half and feed in left half
+                int sourceWidth = WebcamController.Textures2D[cameraId].width;
+                int sourceHeight = WebcamController.Textures2D[cameraId].height;
+                Array.Copy(CamFeed.Instance.GetLeftImageBytes(), NextImageDatas[cameraId], ImageDataSizes[cameraId]);
             }
-            temp.LoadRawTextureData(croppedImage);
-            temp.Apply();
-            undistort.mainTexture = temp;
-
-            Array.Copy(croppedImage, NextImageDatas[cameraId], ImageDataSizes[cameraId]);
 
             //Array.Copy(WebcamController.Textures2D[cameraId].GetRawTextureData(), NextImageDatas[cameraId], ImageDataSizes[cameraId]);
             return true;
@@ -150,10 +137,9 @@ namespace ArucoUnity.Cameras
         /// </summary>
         protected virtual void WebcamController_Started(WebcamController webcamController)
     {
-      var webcamTexture = WebcamController.Textures2D[cameraId];
+            var webcamTexture = CamFeed.Instance.GetWebCamTexture();
             //HACK: Textures[cameraId] = new Texture2D(webcamTexture.width, webcamTexture.height, webcamTexture.format, false);
-            print("FORMAT: " + webcamTexture.format);
-            Textures[cameraId] = new Texture2D(webcamTexture.width/2, webcamTexture.height, webcamTexture.format, false);
+            Textures[cameraId] = new Texture2D(webcamTexture.width/2, webcamTexture.height, TextureFormat.RGB24, false);
             base.OnStarted();
     }
   }

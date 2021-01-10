@@ -4,10 +4,11 @@ using UnityEngine.Rendering;
 
 public class CamFeed : Singleton<CamFeed> {
 
+    public Material unDistort;
     public RenderTexture leftEyeRender;
+    public RenderTexture leftEyeUndistorted;
     public RenderTexture rightEyeRender;
-    public Renderer leftEye;
-    public Renderer rightEye;
+    public RenderTexture rightEyeUndistorted;
 
     WebCamTexture webcamTexture;
     byte[] croppedImage;
@@ -27,10 +28,14 @@ public class CamFeed : Singleton<CamFeed> {
         if (webcamTexture.didUpdateThisFrame && webcamTexture.width > 100) {
             //use scale and offset to get only second half of image, also it needs flipped on both axes
             Graphics.Blit(webcamTexture, leftEyeRender, scale, leftOffset);
+            //next run eye through undistortion shader
+            Graphics.Blit(leftEyeRender, leftEyeUndistorted, unDistort);
+            //do the same for right eye
             Graphics.Blit(webcamTexture, rightEyeRender, scale, rightOffset);
+            Graphics.Blit(rightEyeRender, rightEyeUndistorted, unDistort);
 
             if (imageRequested) {
-                AsyncGPUReadback.Request(leftEyeRender, 0, TextureFormat.RGB24, OnCompleteReadback);
+                AsyncGPUReadback.Request(leftEyeUndistorted, 0, TextureFormat.RGB24, OnCompleteReadback);
             }
         }
     }
@@ -48,8 +53,6 @@ public class CamFeed : Singleton<CamFeed> {
         //set up webcam and cam textures for each eye
         webcamTexture = new WebCamTexture(GetWebCamDevice(), 2560, 960, 30);
         webcamTexture.Play();
-        leftEye.material.mainTexture = leftEyeRender;
-        leftEye.material.mainTexture = rightEyeRender;
     }
 
     void OnCompleteReadback(AsyncGPUReadbackRequest request) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArucoCameraParameters xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CalibrationDateTime>2021-01-02T23:50:22.3684221-05:00</CalibrationDateTime>
+  <CalibrationDateTime>2021-01-09T16:26:59.4294605-05:00</CalibrationDateTime>
   <CameraNumber>1</CameraNumber>
   <ImageHeights>
     <int>960</int>
@@ -11,20 +11,20 @@
   <CalibrationFlagsValue>0</CalibrationFlagsValue>
   <FixAspectRatioValue>0</FixAspectRatioValue>
   <ReprojectionErrors>
-    <double>1.2437966128181714</double>
+    <double>1.5933941454334306</double>
   </ReprojectionErrors>
   <CameraMatricesType>CV_64F</CameraMatricesType>
   <CameraMatricesValues>
     <ArrayOfArrayOfDouble>
       <ArrayOfDouble>
-        <double>1561.4999254650174</double>
-        <double>-3.69105218845504</double>
-        <double>657.89921902892024</double>
+        <double>861.72166357284959</double>
+        <double>5.4521202643777036</double>
+        <double>681.99722518562487</double>
       </ArrayOfDouble>
       <ArrayOfDouble>
         <double>0</double>
-        <double>1568.6124809961661</double>
-        <double>465.3027876245045</double>
+        <double>869.74974107982518</double>
+        <double>463.67660575839051</double>
       </ArrayOfDouble>
       <ArrayOfDouble>
         <double>0</double>
@@ -37,10 +37,10 @@
   <DistCoeffsValues>
     <ArrayOfArrayOfDouble>
       <ArrayOfDouble>
-        <double>-0.21661110085023064</double>
-        <double>1.3132366509683187</double>
-        <double>-0.008580512401994346</double>
-        <double>-0.0049812315380948925</double>
+        <double>-0.38783871794533104</double>
+        <double>0.13311857360523183</double>
+        <double>0.0019362797427555562</double>
+        <double>-0.0068263455223106524</double>
       </ArrayOfDouble>
     </ArrayOfArrayOfDouble>
   </DistCoeffsValues>
@@ -48,7 +48,7 @@
   <OmnidirXisValues>
     <ArrayOfArrayOfDouble>
       <ArrayOfDouble>
-        <double>2.2177762244290786</double>
+        <double>0.80472880980009942</double>
       </ArrayOfDouble>
     </ArrayOfArrayOfDouble>
   </OmnidirXisValues>

@@ -12,6 +12,7 @@ namespace ArucoUnity.Cameras.Displays
   public abstract class ArucoCameraDisplay : ArucoCameraController, IArucoCameraDisplay
   {
     // Constants
+    public Vector3 Offset;
 
     public const float cameraBackgroundDistance = 1f;
 
@@ -65,8 +66,13 @@ namespace ArucoUnity.Cameras.Displays
 
     public virtual void PlaceArucoObject(Transform arucoObject, int cameraId, Vector3 localPosition, Quaternion localRotation)
     {
+
+
       var parent = arucoObject.transform.parent;
       arucoObject.transform.SetParent(Cameras[cameraId].transform);
+
+      //HACK: Add offset here since we dont want to move background:
+      localPosition += Offset;
 
       arucoObject.transform.localPosition = localPosition;
       arucoObject.transform.localRotation = localRotation;
@@ -86,7 +92,7 @@ namespace ArucoUnity.Cameras.Displays
       // Sets the background texture
       for (int cameraId = 0; cameraId < ArucoCamera.CameraNumber; cameraId++)
       {
-        Backgrounds[cameraId].material.mainTexture = ArucoCamera.Textures[cameraId];
+        //Backgrounds[cameraId].material.mainTexture = ArucoCamera.Textures[cameraId];
       }
 
       // Cameras and background configurations
@@ -98,10 +104,10 @@ namespace ArucoUnity.Cameras.Displays
       {
         for (int cameraId = 0; cameraId < ArucoCamera.CameraNumber; cameraId++)
         {
-          ConfigureRectifiedCamera(cameraId);
-          ConfigureRectifiedBackground(cameraId);
-        }
-      }
+                    ConfigureRectifiedCamera(cameraId);
+                    ConfigureRectifiedBackground(cameraId);
+                }
+            }
     }
 
     /// <summary>
@@ -112,9 +118,9 @@ namespace ArucoUnity.Cameras.Displays
     {
       for (int cameraId = 0; cameraId < ArucoCamera.CameraNumber; cameraId++)
       {
-        Cameras[cameraId].gameObject.SetActive(value);
-        BackgroundCameras[cameraId].gameObject.SetActive(value);
-        Backgrounds[cameraId].gameObject.SetActive(value);
+        //Cameras[cameraId].gameObject.SetActive(value);
+        //BackgroundCameras[cameraId].gameObject.SetActive(value);
+        //Backgrounds[cameraId].gameObject.SetActive(value);
       }
     }
 
@@ -154,8 +160,10 @@ namespace ArucoUnity.Cameras.Displays
       Vector2 cameraF = ArucoCameraUndistortion.RectifiedCameraMatrices[cameraId].GetCameraFocalLengths();
 
       float fovY = 2f * Mathf.Atan(0.5f * imageHeight / cameraF.y) * Mathf.Rad2Deg;
-      Cameras[cameraId].fieldOfView = fovY;
-      BackgroundCameras[cameraId].fieldOfView = fovY;
+
+      //HACK: dont set these 
+      //Cameras[cameraId].fieldOfView = fovY;
+     // BackgroundCameras[cameraId].fieldOfView = fovY;
     }
 
     /// <summary>
@@ -182,8 +190,10 @@ namespace ArucoUnity.Cameras.Displays
       float localScaleY = imageHeight / focalLength.y * cameraBackgroundDistance;
 
       // Place and scale the background
-      Backgrounds[cameraId].transform.localPosition = new Vector3(localPositionX, localPositionY, cameraBackgroundDistance);
-      Backgrounds[cameraId].transform.localScale = new Vector3(localScaleX, localScaleY, 1);
+
+      //HACK: dont Move the background, we will move the tracker instead
+      //Backgrounds[cameraId].transform.localPosition = new Vector3(localPositionX, localPositionY, cameraBackgroundDistance);
+      //Backgrounds[cameraId].transform.localScale = new Vector3(localScaleX, localScaleY, 1);
     }
   }
 }
