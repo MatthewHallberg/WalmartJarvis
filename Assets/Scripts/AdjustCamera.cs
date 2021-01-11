@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class AdjustCamera : MonoBehaviour {
+public class AdjustCamera : Singleton<AdjustCamera> {
 
     public Transform leftCam;
     public Transform rightCam;
@@ -20,6 +20,11 @@ public class AdjustCamera : MonoBehaviour {
     [Header("Z-SHIFT")]
     [Range(-1f, -.3f)]
     public float zShift;
+
+    //returns IPD in millimeters
+    public float GetIPD() {
+        return (eyeDistance % 1) + Mathf.Abs(xShift);
+    }
 
     void Start() {
         LoadValues();

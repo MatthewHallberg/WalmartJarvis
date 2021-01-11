@@ -274,7 +274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310384208}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.065, y: 0.024, z: -0.519}
+  m_LocalPosition: {x: -3.073, y: 0.024, z: -0.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1281527929}
@@ -839,8 +839,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoStart: 1
-  Offset: {x: 0, y: 0, z: 0}
-  ScaleMult: 1
   arucoCamera: {fileID: 727663271}
   arucoCameraUndistortion: {fileID: 727663268}
   cameras:
@@ -848,7 +846,7 @@ MonoBehaviour:
   backgroundCameras:
   - {fileID: 1772449960}
   backgrounds:
-  - {fileID: 1939497127}
+  - {fileID: 0}
 --- !u!114 &727663270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,7 +1535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftCam: {fileID: 310384209}
   rightCam: {fileID: 2068383857}
-  eyeDistance: 3.039
+  eyeDistance: 3.047
   xShift: -0.026
   yShift: 0.024
   zShift: -0.519
@@ -2798,7 +2796,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068383856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.013, y: 0.024, z: -0.519}
+  m_LocalPosition: {x: 3.021, y: 0.024, z: -0.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1281527929}
